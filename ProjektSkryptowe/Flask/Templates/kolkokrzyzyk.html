@@ -260,11 +260,20 @@
                 }
                 GenGrid();
             }
+            function submit_form()
+            {
+            var form = document.getElementById("my_form");
+            form.submit();
+            alert("Wczytano dane!");
+            }
     </script>
 
 </head>
 
 <body onload="GenGrid()">
+    <input name="" id="grid" value="grid" type="hidden">
+    <form id="my_form" method="POST" action="" onload="submit_form()"></form>
+
     <div3>
         <ul>
             <li><a href="http://127.0.0.1:5000/main">Strona główna</a></li>

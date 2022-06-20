@@ -6,18 +6,17 @@ class TicTac:
     Klasa TicTac posiadająca metody: 
     Konstruktor główny inicjalizujący zmienne
     abc- sprawdzający ze sobą 3 pojedyńcze elementy 
-    Sprawdz_wygrany - sprawdza możliwości wygrania poprzez metodę abc, która
+    Sprawdz_wygrany - sprawzdza możliwości wygrania poprzez metodę abc, która
     sprawdza 3 elementy w wierzach, kolumnach, bądź skosach
     Remis- metoda sprawdzająca czy zaszedł remis, czyli czy nie zapełniła się cała tablica 3x3
     """
-    def __init__(self):
-        self.k = 0
-        self.tab33 = [[0, 0, 0],
-         [0, 0, 0],
-         [0, 0, 0]]
-        self.ids =  ['a00', 'a01', 'a02',
-        'a10', 'a11', 'a12',
-        'a20', 'a21', 'a22']
+    k = 0
+    tab33 = [[0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]]
+    ids =  ['a00', 'a01', 'a02',
+    'a10', 'a11', 'a12',
+    'a20', 'a21', 'a22']
 
     def abc(self, a, b, c):
         return a == b & b == c & a != 0

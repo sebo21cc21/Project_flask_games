@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -139,8 +139,10 @@ def kalkulator():
 @app.route('/kolkokrzyzyk')
 @login_required
 def kolkokrzyzyk():
-
-    return render_template('kolkokrzyzyk.html')
+    form = TicTac()
+    if request.method == 'POST':
+        return render_template('kolkokrzyzyk.html')   
+    return render_template('kolkokrzyzyk.html', form= form)   
 
 @app.route('/memory')
 @login_required
