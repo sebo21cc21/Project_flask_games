@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pietnastka</title>
+    <style>
+        body {
+            background-color: #1c2429;
+        }
+
+        input {
+        background-color: darkcyan;
+        font-size: 12px;
+        width: 100px;
+        height: 30px;
+        }
+
+        div {
+            position: absolute;
+            width: 99px;
+            height: 99px;
+            border: 1px solid black;
+        }
+
+        div img {
+            position: absolute;
+            width: 99px;
+            height: 99px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0px;
+            overflow: hidden;
+            background-color: black;
+            padding-left: 0px;
+        }
+
+        li a {
+            float: left;
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 10px 50px 10px 50px;
+        }
+        div3 {
+            position: sticky;
+            top: 30px;
+            left: 307px;
+        }
+        div4 {
+            position: absolute;
+            top: 30px;
+            left: 307px;
+        }
+        .stopka {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #182024;
+            text-align: center;
+            padding: 5px;
+            font-family: Arial;
+        }
+
+    </style>
+    <script>
+        function GenGrid() {
+            var num = 4, newdiv, divIdName;
+            for (var i = 0; i < num; i++) {
+                for (var j = 0; j < num; j++) {
+                    newdiv = document.createElement('div');
+                    divIdName = 'a' + i + j;
+                    newdiv.setAttribute('id', divIdName);
+                    newdiv.style.top = 100 + 100 * i + 'px';
+                    newdiv.style.left = 100 + 100 * j + 'px';
+                    if (i * j != 9)
+                        newdiv.innerHTML = "<img src='static/slice_" + i + "_" + j + ".gif'>";
+                    newdiv.addEventListener('click', function () {
+                        Graj(this);
+                    });
+                    document.body.appendChild(newdiv);
+                }
+            }
+
+        }
+
+        function Graj(x) {
+            var bufor;
+            if (x.style.top == a33.style.top && (Math.abs(a33.offsetLeft - x.offsetLeft) <= 100)) {
+                bufor = x.style.left;
+                x.style.left = a33.style.left;
+                a33.style.left = bufor;
+            }
+            if (x.style.left == a33.style.left && (Math.abs(a33.offsetTop - x.offsetTop) <= 100)) {
+                bufor = x.style.top;
+                x.style.top = a33.style.top;
+                a33.style.top = bufor;
+            }
+        } 
+        function Mieszaj() {
+            var TabId = ['a00', 'a01', 'a02', 'a03', 'a10', 'a11', 'a12', 'a13', 'a20', 'a21', 'a22', 'a23', 'a30', 'a31', 'a32', 'a33',];
+            var TabPos = [
+                [100, 100, 0],
+                [100, 200, 0],
+                [100, 300, 0],
+                [100, 400, 0],
+                [200, 100, 0],
+                [200, 200, 0],
+                [200, 300, 0],
+                [200, 400, 0],
+                [300, 100, 0],
+                [300, 200, 0],
+                [300, 300, 0],
+                [300, 400, 0],
+                [400, 100, 0],
+                [400, 200, 0],
+                [400, 300, 0],
+                [400, 400, 0],];
+            var i = 0;
+            while (i < 16) {
+                var x = Math.floor(Math.random() * 16);
+                if (TabPos[x][2] == 0) {
+                    document.getElementById(TabId[i]).style.top = TabPos[x][0] + 'px';
+                    document.getElementById(TabId[i]).style.left = TabPos[x][1] + 'px';
+                    TabPos[x][2] = 1;
+                    i++;
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body onload="GenGrid()">
+
+    <div3>
+        <ul>
+            <li><a href="http://127.0.0.1:5000/main">Strona główna</a></li>
+        </ul>
+        <input type="button" onclick="Mieszaj()" value="mieszaj">
+    </div3>
+    <div5 class="stopka">
+        <p style="color: grey;">Gry wspomagające rozwój dzieci aut. Sebastian Bednarski</p>
+    </div5>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+﻿{% extends "index.html" %}
+{% block style_css %}
+<style>
+	input {
+        background-color: rgb(113, 218, 218);
+    }
+	#one {
+		position: absolute;
+		top: 150px;
+		left: 200px;
+		width: 350px;
+		height: 300px;
+		margin: 20px;
+		padding: 20px;
+		background-color: rgb(106, 139, 236);
+		border-color: rgb(179, 47, 47);
+		border-style: solid;
+		border-width: 5px;
+	}
+
+	ul {
+		list-style-type: none;
+		margin: 0px;
+		overflow: hidden;
+		background-color: black;
+		padding-left: 0px;
+	}
+
+	li a {
+		float: left;
+		display: inline-block;
+		color: white;
+		text-align: center;
+		padding: 10px 50px 10px 50px;
+	}
+	div3 {
+		position: absolute;
+		top:10px;
+		left:350px;
+	}
+</style>
+{% endblock %}
+
+{% block navigation %}
+<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="http://127.0.0.1:5000/main">Strona Główna</a>
+{% endblock %}
+
+{% block index %}
+<script>
+	function Dodaj() {
+		form1.wynik.value = parseFloat(form1.a1.value) + parseFloat(form1.b1.value);
+	}
+
+	function Odejmij() {
+		form1.wynik.value = parseFloat(form1.a1.value) - parseFloat(form1.b1.value);
+	}
+
+	function Pomnoz() {
+		form1.wynik.value = parseFloat(form1.a1.value) * parseFloat(form1.b1.value);
+	}
+
+	function Podziel() {
+		form1.wynik.value = parseFloat(form1.a1.value) / parseFloat(form1.b1.value);
+	}
+
+	function Pierwiastek() {
+		var x = prompt("Podaj wartość", "");
+		alert("Pierwiastek z liczby " + x + " = " + Math.sqrt(x));
+	}
+
+	function Silnia() {
+		var x = prompt("Podaj wartość", "");
+		var silnia = 1;
+		if (x >= 0) {
+			for (var i = x; i > 1; i--) {
+				silnia = silnia * i;
+
+			}
+			alert("Silnia z liczby " + x + " = " + silnia);
+		}
+		else
+			alert("Silnia jest dodatnia! ");
+	}
+	function Potęga() {
+		var x = prompt("Podaj liczbę: ", "");
+		var wynik = x * x;
+		alert("Potęga z liczby" + x + "=" + wynik);
+
+	}
+
+	function Zmiana() {
+		var x = form2.sel.value;
+		switch (x) {
+			case "Width":
+				one.style.width = form2.c1.value + "px";
+				break;
+
+			case "Height":
+				one.style.height = form2.c1.value + "px";
+				break;
+
+			case "Top":
+				one.style.top = form2.c1.value + "px";
+				break;
+
+			case "Left":
+				one.style.left = form2.c1.value + "px";
+				break;
+
+			case "Border_color":
+				one.style.borderColor = form2.c1.value;
+				break;
+
+			case "Border_style":
+				one.style.borderStyle = form2.c1.value;
+				break;
+
+			case "Border_width":
+				one.style.borderWidth = form2.c1.value + "px";
+				break;
+		}
+	}
+</script>
+<div id="one">
+	<form name="form1">
+		KALKULATOR<br>
+		<input type="text" name="a1" size="6">
+		<input type="button" value="+" onclick="Dodaj()">
+		<input type="button" value="-" onclick="Odejmij()">
+		<input type="button" value="*" onclick="Pomnoz()">
+		<input type="button" value="/" onclick="Podziel()">
+		<input type="text" name="b1" size="6"><br><hr>
+		<input type="text" name="wynik" size="6"><br><hr>
+		<input type="button" value="!" onclick="Silnia()">
+		<input type="button" value="sqrt" onclick="Pierwiastek()">
+		<input type="button" value="2^n" onclick="Potęga()">
+	</form>
+</div>
+<form name="form2" style="position:absolute; top:20px; left:100px;">
+	<select name="sel">
+		<option name="gora">Top</option>
+		<option name="lewo">Left</option>
+		<option name="szerokosc">Width</option>
+		<option name="wysokosc">Height</option>
+		<option name="obramowanie_k">Border_color</option>
+		<option name="obramowanie_s">Border_style</option>
+		<option name="obramowanie_g">Border_width</option>
+	</select>
+	<input type="text" name="c1" size="6">
+	<input type="button" value="zmień" onclick="Zmiana()">
+</form>
+
+
+{% endblock %}

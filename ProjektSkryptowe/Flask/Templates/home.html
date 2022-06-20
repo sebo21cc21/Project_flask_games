@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block navigation %}
+<a class="nav-link fw-bold py-1 px-0 active" aria-current="page"  href="http://127.0.0.1:5000/">Strona startowa</a>
+<a class="nav-link fw-bold py-1 px-0" href="http://127.0.0.1:5000/login">Logowanie</a>
+<a class="nav-link fw-bold py-1 px-0" href="http://127.0.0.1:5000/register">Rejestracja</a>
+{% endblock %}
+
+{% block index %}
+<h1>Witaj, załóż swoje konto, aby móc zagrać w gry!</h1>
+<a href="{{url_for('login')}}">Logowanie</a><br>
+<a href="{{url_for('login')}}">Rejestracja</a><br>
+{% endblock %}

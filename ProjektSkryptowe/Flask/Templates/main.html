@@ -1,0 +1,155 @@
+﻿{% extends "index.html" %}
+
+{% block style_css %}
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0px;
+        overflow: hidden;
+        padding-left: 0px;
+    }
+
+    li a {
+        font-size: 25px;
+        float: left;
+        padding-right: 10px;
+        padding-left: 5px;
+    }
+    h1 {
+        padding: 100px;
+    }
+
+    img {
+        float: left;
+        width: 120px;
+        height: 120px;
+        }
+
+</style>
+
+{% endblock %}
+
+{% block navigation %}
+<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="http://127.0.0.1:5000/">Wyloguj się</a>
+{% endblock %}
+
+{% block index %}
+<ul>
+<div id="kalkulator">
+    <a href="http://127.0.0.1:5000/kalkulator"><img src="static/kalkulator.jpg" id="1" alt="kalkulator"></a>
+</div>
+
+<div id="tictac">
+    <a href="http://127.0.0.1:5000/kolkokrzyzyk"><img src="static/tictac.jpg" id="2" alt="tictac"></a>
+</div>
+
+<left>
+<div id="memory">
+    <a href="http://127.0.0.1:5000/memory"><img src="static/memory.png" id="3" alt="memory"></a>
+</div>
+</left>
+
+<div id="puzle">
+    <a href="http://127.0.0.1:5000/pietnastka"><img src="static/puzle.jpg" id="4" alt="puzle"></a>
+</div>
+
+<div id="ping">
+    <a href="http://127.0.0.1:5000/pingpong"><img src="static/ping.jpg" id="5" alt="ping"></a>
+</div>
+</ul>
+<ul>
+    <li><a href="http://127.0.0.1:5000/kalkulator">Kalkulator</a></li>
+    <li><a href="http://127.0.0.1:5000/kolkokrzyzyk">Kółko-krzyżyk</a></li>
+    <li><a href="http://127.0.0.1:5000/memory">Memory</a></li>
+    <li><a href="http://127.0.0.1:5000/pietnastka">Puzle</a></li>
+    <li><a href="http://127.0.0.1:5000/pingpong">PingPong</a></li>
+</ul>
+
+<div id="background">
+    <br>
+    <Center>
+        <h1>CHCESZ ZAGRAĆ? WYBIERZ SWOJĄ GRĘ<br>
+    </Center>
+</div>
+
+{% endblock %}
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="pl">
+<head>
+    <style>
+
+        body {
+            margin: 0;
+            background-color: #cb3838;
+            font-family: Arial;
+            align-items: center;
+            justify-content: center;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0px;
+            overflow: hidden;
+            background-color: black;
+            padding-left: 0px;
+        }
+
+        li a {
+            float: left;
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 10px 50px 10px 50px;
+        }
+        h1 {
+            padding: 10px;
+        }
+        .stopka
+        {
+            position: fixed;
+            bottom: 0;
+            left:0;
+            width:100%;
+            background-color: black;
+            text-align:center;
+            padding:5px;
+            font-family: Arial;
+
+        }
+
+    </style>
+    <meta charset="utf-8">
+    <script>
+    </script>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li><a href="http://127.0.0.1:5000/main">Strona główna</a></li>
+            <li><a href="http://127.0.0.1:5000/kalkulator">Kalkulator</a></li>
+            <li><a href="http://127.0.0.1:5000/kolkokrzyzyk">Kółko i krzyżyk</a></li>
+            <li><a href="http://127.0.0.1:5000/memory">Memory</a></li>
+            <li><a href="http://127.0.0.1:5000/pietnastka">Puzle</a></li>
+            <li><a href="http://127.0.0.1:5000/pingpong">PingPong</a></li>
+        </ul>
+    </div>
+    <div id="background">
+        <Center>
+            <h1>PROJEKT ZALICZENIOWY</h1>
+            Wykonał Sebastian Bednarski<br>
+            <br>Języki skryptowe
+        </Center>
+        <h2></h2>
+    </div>
+    <div class="stopka">
+        <p style="color: white;">Sebastian Bednarski Projekt zaliczeniowy</p>
+    </div>
+
+
+        
+</body>
+
+</html> -->

@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kółko i krzyżyk</title>
+    <style>
+        input {
+        background-color: darkcyan;
+        font-size: 12px;
+        width: 100px;
+        height: 30px;
+        }
+
+        body {
+            background-color: #1c2429;
+
+        }
+            div {
+            position: absolute;
+            width: 99px;
+            height: 99px;
+            border: 1px solid black;
+            
+        }
+
+            div img {
+                position: absolute;
+                width: 97px;
+                height: 97px;
+                padding: 2px;
+            }
+
+        div2 {
+            position: absolute;
+            width: 70px;
+            height: 50px;
+            padding: 2px;
+        }
+        div3 {
+            position: absolute;
+            top: 500px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0px;
+            overflow: hidden;
+            background-color: black;
+            padding-left: 0px;
+        }
+
+        li a {
+            float: left;
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 10px 50px 10px 50px;
+        }
+        .stopka {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #182024;
+            text-align: center;
+            padding: 5px;
+            font-family: Arial;
+        }
+    </style>
+    <script>
+            function GenGrid()
+            {
+                var num = 3,
+                    newdiv, divIdName;
+                for (var i = 0; i < num; i++)
+                {
+                    for (var j = 0; j < num; j++)
+                    {
+                        newdiv = document.createElement('div');
+                        divIdName = 'a' + i + j;
+                        newdiv.setAttribute('id', divIdName);
+                        newdiv.style.top = 145 + 100 * i + 'px';
+                        newdiv.style.left = 20 + 100 * j + 'px';
+                        newdiv.addEventListener('click', function ()
+                        {
+                            Graj(this);
+                        });
+                        document.body.appendChild(newdiv);
+                    }
+                }
+                printTab33();
+            }
+
+        var p1 = "<img src='static/kolko.png' >";
+        var p2 = "<img src='static/krzyzyk.png' >";
+
+            var k = 0;
+            var isCircle = true;
+
+            var tab33 = [
+                        [0, 0, 0],
+                        [0, 0, 0],
+                        [0, 0, 0]];
+
+            var ids = ['a00', 'a01', 'a02',
+                       'a10', 'a11', 'a12',
+                       'a20', 'a21', 'a22'];
+
+            function iter(a)
+            {
+                var l;
+                for (l = 0; l < 9; l++)
+                    if (a == document.getElementById(ids[l])) break;
+                return l;
+            }
+
+            function abc(a, b, c)
+            {
+                return a == b && b == c && a != 0;
+            }
+
+            function Sprawdz_wygrany()
+            {
+                let wygrany = null;
+
+                // Pionowo
+                for (let i = 0; i < 3; i++)
+                {
+                    if (abc(tab33[i][0], tab33[i][1], tab33[i][2]))
+                    {
+                        wygrany = tab33[i][0];
+                    }
+                }
+
+                // Poziomo
+                for (let i = 0; i < 3; i++)
+                {
+                    if (abc(tab33[0][i], tab33[1][i], tab33[2][i]))
+                    {
+                        wygrany = tab33[0][i];
+                    }
+                }
+
+                // Skosem
+                if (abc(tab33[0][0], tab33[1][1], tab33[2][2]))
+                {
+                    wygrany = tab33[0][0];
+                }
+                if (abc(tab33[2][0], tab33[1][1], tab33[0][2]))
+                {
+                    wygrany = tab33[2][0];
+                }
+
+                if (wygrany == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return wygrany;
+                }
+            }
+
+            function Remis()
+            {
+                for (let i = 0; i < 3; i++)
+                {
+                    for (let j = 0; j < 3; j++)
+                    {
+                        if (tab33[i][j] == 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+
+            function printTab33()
+            {
+                t33.innerHTML = "";
+                for (let i = 0; i < 3; i++)
+                {
+                    for (let j = 0; j < 3; j++)
+                        t33.innerHTML += tab33[i][j] + "   ";
+                    t33.innerHTML += "<br>";
+                }
+            }
+
+            function Graj(x)
+            {
+                var i = iter(x);
+                var row = Math.floor(i / 3);
+                var col = i % 3;
+
+                if (tab33[row][col] != 0) {
+                    alert("Kliknij w puste miejsce");
+                    return;
+                }
+                tab33[row][col] = isCircle ? 1 : -1;
+
+                printTab33();
+
+                var elementToAdd = null;
+
+                if (isCircle)
+                {
+                    elementToAdd = p1;
+                }
+                else
+                {
+                    elementToAdd = p2;
+                }
+
+                x.innerHTML = elementToAdd;
+
+                isCircle = (!isCircle);
+
+                var wygrany = Sprawdz_wygrany();
+                switch (wygrany)
+                {
+                    case -1:
+                    {
+                        alert("Wygrywa X");
+                        Reset();
+                        break;
+                    }
+                    case 1:
+                    {
+                        alert("Wygrywa O");
+                        Reset();
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+
+                if (Remis())
+                {
+                    alert("Remis");
+                    Reset();
+                }
+            }
+
+            function Reset()
+            {
+                isCircle = true;
+                tab33 = [
+                    [0, 0, 0],
+                    [0, 0, 0],
+                    [0, 0, 0]];
+
+                for (var item of ids)
+                {
+                    var div = document.getElementById(item);
+                    div.remove();
+                }
+                GenGrid();
+            }
+    </script>
+
+</head>
+
+<body onload="GenGrid()">
+    <div3>
+        <ul>
+            <li><a href="http://127.0.0.1:5000/main">Strona główna</a></li>
+        </ul>
+    </div3>
+    <div id="t33" style="left:340px; top:145px"></div>
+    <h1><span style="color: white">Zagrajmy w grę!</span></h1>
+    <div2>
+        <input type="reset" onclick="Reset()" value="Zresetuj grę">
+    </div2>
+    <div4 class="stopka">
+        <p style="color: grey;">Gry wspomagające rozwój dzieci aut. Sebastian Bednarski</p>
+    </div4>
+</body>
+
+</html>

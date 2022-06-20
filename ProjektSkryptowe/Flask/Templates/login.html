@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block navigation %}
+<a class="nav-link fw-bold py-1 px-0" href="http://127.0.0.1:5000/">Strona startowa</a>
+<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="http://127.0.0.1:5000/login">Logowanie</a>
+<a class="nav-link fw-bold py-1 px-0" href="http://127.0.0.1:5000/register">Rejestracja</a>
+{% endblock %}
+
+{% block index %}
+<h1>Autoryzacja logowania</h1>
+<p>
+<form method="POST" action="">
+    {{ form.hidden_tag() }} 
+    {{ form.username }}
+    {{ form.password }}
+    {{ form.submit }}
+</form>
+
+    {% if form.username.errors %}
+            <ul class="errors">
+            {% for error in form.username.errors %}
+                    <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+    {% endif %}
+</p>
+<a href="{{url_for('register')}}">Nie masz konta? Zarejestruj się</a>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+
+{% block navigation %}
+<a class="nav-link fw-bold py-1 px-0" href="http://127.0.0.1:5000/">Strona startowa</a>
+<a class="nav-link fw-bold py-1 px-0" href="http://127.0.0.1:5000/login">Logowanie</a>
+<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="http://127.0.0.1:5000/register">Rejestracja</a>
+{% endblock %}
+
+{% block index %}
+<h1>Zarejestruj użytkownika</h1>
+<p>
+	<form action="" method="POST">
+		{{ form.hidden_tag() }}
+		{{ form.username }}
+		{{ form.password }}
+		{{ form.submit}}
+	</form>
+</p>
+<p>
+	{% if form.username.errors %}
+			<ul class="errors">
+			{% for error in form.username.errors %}
+					<li>{{ error }}</li>
+			{% endfor %}
+			</ul>
+	{% endif %}
+</p>
+<a href="{{url_for('home')}}"><button class="btn btn-secondary">Powrót</button></a> 
+<a href="{{url_for('login')}}"><button class="btn btn-secondary">Posiadasz konto? Zaloguj się</button></a>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Register User Page</h1>
+		<p>
+			<form action="" method="POST">
+				{{ form.hidden_tag() }}
+				{{ form.username }}
+				{{ form.password }}
+				{{ form.submit}}
+			</form>
+		</p>
+		<p>
+			{% if form.username.errors %}
+					<ul class="errors">
+					{% for error in form.username.errors %}
+							<li>{{ error }}</li>
+					{% endfor %}
+					</ul>
+			{% endif %}
+		</p>
+        <a href="{{url_for('home')}}"><button class="btn btn-secondary">Powrót</button></a> 
+		<a href="{{url_for('login')}}"><button class="btn btn-secondary">Posiadasz konto? Zaloguj się</button></a>
+    </body>
+</html> -->

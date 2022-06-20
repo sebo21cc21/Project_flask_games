@@ -1,0 +1,193 @@
+﻿{% extends "index.html" %}
+
+{% block style_css %}
+<style>
+    
+    input {
+        background-color: darkcyan;
+        font-size: 12px;
+        width: 80px;
+    }
+
+    .mini1 {
+        border: cornsilk 2px solid;
+        height: 98px;
+        width: 98px
+    }
+
+    #ekran {
+        width: 500px;
+        height: 500px;
+    }
+
+    img {
+        width: 98px;
+        height: 98px;
+    }
+    .ruchy {
+        text-align: center;
+        height: 100px;
+        width: 300px;
+        font-size: 30px;
+        top: 250px;
+        left: 425px;
+        font-weight: 900;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0px;
+        overflow: hidden;
+        background-color: black;
+        padding-left: 0px;
+    }
+
+    li a {
+        float: left;
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 10px 50px 10px 50px;
+    }
+
+    div3 {
+        position: absolute;
+    }
+</style>
+{% endblock %}
+
+{% block navigation %}
+
+<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="http://127.0.0.1:5000/main">Strona Główna</a>
+{% endblock %}
+
+{% block index %}
+<script type="text/javascript">
+    var TabId = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a12', 'a13', 'a14', 'a15', 'a16', 'a17', 'a18', 'a19', 'a20'];
+    var TabImg = ['zdjęcie1', 'zdjęcie1', 'zdjęcie2', 'zdjęcie2', 'zdjęcie3', 'zdjęcie3', 'zdjęcie4', 'zdjęcie4', 'zdjęcie5', 'zdjęcie5', 'zdjęcie6', 'zdjęcie6', 'zdjęcie7', 'zdjęcie7', 'zdjęcie8', 'zdjęcie8', 'zdjęcie9', 'zdjęcie9', 'zdjęcie10', 'zdjęcie10'];
+    var TabImage = ['zdjęcie1', 'zdjęcie2', 'zdjęcie3', 'zdjęcie4', 'zdjęcie5', 'zdjęcie6', 'zdjęcie7', 'zdjęcie8', 'zdjęcie9', 'zdjęcie10'];
+    function Zakryj() {
+        for (var i = 0; i <= 19; i++)
+            document.getElementById(TabId[i]).innerHTML = "<img src='static/zdjęcie11.png'>"
+    }
+
+    function Odkryj(x) {
+        for (var i = 0; i < 20; i++)
+            if (x == document.getElementById(TabId[i]))
+                x.innerHTML = "<img src=static/" + TabImg[i] + ".jpg>";
+    }
+    function Mieszaj() {
+        var TabPos = [[50, 50, 0], [50, 150, 0], [50, 250, 0], [50, 350, 0], [50, 450, 0], [150, 50, 0], [150, 150, 0], [150, 250, 0], [150, 350, 0], [150, 450, 0], [250, 50, 0], [250, 150, 0], [250, 250, 0], [250, 350, 0], [250, 450, 0], [350, 50, 0], [350, 150, 0], [350, 250, 0], [350, 350, 0], [350, 450, 0]];
+        var i = 0;
+        while (i < 20) {
+            var x = Math.floor(Math.random() * 20);
+            if (TabPos[x][2] == 0) {
+                document.getElementById(TabId[i]).style.left = TabPos[x][0] + 'px';
+                document.getElementById(TabId[i]).style.top = TabPos[x][1] + 'px';
+                TabPos[x][2] = 1;
+                i++;
+            }
+        }
+    }
+    var ruch = 0;
+    var win = 0;
+    var p = 0;
+    var one, two, id1, id2;
+    function Graj(x, y) {
+        if (p == 0) {
+            Zakryj();
+            Odkryj(x);
+            one = x;
+            id1 = y;
+            p = 1;
+        }
+        else {
+            Odkryj(x);
+            two = x;
+            id2 = y;
+            ruch++;
+
+            document.getElementById("ruch").innerHTML = ruch;
+            p = 0;
+
+            if (one.innerHTML == two.innerHTML && id1 != id2) {
+                one.style.visibility = "hidden";
+                two.style.visibility = "hidden";
+                win++;
+                if (win == 10) {
+                    alert("Wygrana po twojej stronie!!! Jeszcze raz?");
+                }
+            }
+        }
+    }
+</script>
+<form name="form1" style="position:static; left:125px;">
+    <input type="button" value="Zakryj" onclick="Zakryj()">
+    <input type="button" value="Mieszaj" onclick="Mieszaj()">
+    <input type="button" onClick="window.location.reload();" value="Ponów grę">
+</form>
+
+<div3 class="ruchy" style="position:static;">
+    <p>Liczba ruchów = <span id="ruch">0</span></p>
+</div3>
+<div3 id="a1" class="mini1" style="left: 50px; top: 50px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie1.jpg">
+</div3>
+<div3 id="a2" class="mini1" style="left: 50px; top:150px" onclick="Graj(this,this)">
+    <img src="static/zdjęcie1.jpg">
+</div3>
+<div3 id="a3" class="mini1" style="left: 50px; top:250px" onclick="Graj(this,this)">
+    <img src="static/zdjęcie2.jpg">
+</div3>
+<div3 id="a4" class="mini1" style="left: 50px; top:350px" onclick="Graj(this,this)">
+    <img src="static/zdjęcie2.jpg">
+</div3>
+<div3 id="a5" class="mini1" style="left: 50px; top: 450px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie3.jpg">
+</div3>
+<div3 id="a6" class="mini1" style="left: 150px; top: 50px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie3.jpg">
+</div3>
+<div3 id="a7" class="mini1" style="left: 150px; top: 150px" onclick="Graj(this,this)">
+    <img src="static/zdjęcie4.jpg">
+</div3>
+<div3 id="a8" class="mini1" style="left: 150px; top: 250px" onclick="Graj(this,this)">
+    <img src="static/zdjęcie4.jpg">
+</div3>
+<div3 id="a9" class="mini1" style="left: 150px; top: 350px" onclick="Graj(this,this)">
+    <img src="static/zdjęcie5.jpg">
+</div3>
+<div3 id="a10" class="mini1" style="left: 150px; top: 450px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie5.jpg">
+</div3>
+<div3 id="a11" class="mini1" style="left: 250px; top: 50px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie6.jpg">
+</div3>
+<div3 id="a12" class="mini1" style="left: 250px; top: 150px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie6.jpg">
+</div3>
+<div3 id="a13" class="mini1" style="left: 250px; top: 250px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie7.jpg">
+</div3>
+<div3 id="a14" class="mini1" style="left: 250px; top: 350px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie7.jpg">
+</div3>
+<div3 id="a15" class="mini1" style="left: 250px; top: 450px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie8.jpg">
+</div3>
+<div3 id="a16" class="mini1" style="left: 350px; top: 50px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie8.jpg">
+</div3>
+<div3 id="a17" class="mini1" style="left: 350px; top: 150px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie9.jpg">
+</div3>
+<div3 id="a18" class="mini1" style="left: 350px; top: 250px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie9.jpg">
+</div3>
+<div3 id="a19" class="mini1" style="left: 350px; top: 350px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie10.jpg">
+</div3>
+<div3 id="a20" class="mini1" style="left: 350px; top: 450px;" onclick="Graj(this,this)">
+    <img src="static/zdjęcie10.jpg">
+</div3>
+
+{% endblock %}
